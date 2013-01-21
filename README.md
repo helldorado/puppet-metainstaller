@@ -1,4 +1,0 @@
-puppet-metainstaller
-====================
-
-puppet-metainstaller
