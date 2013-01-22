@@ -3,6 +3,8 @@
 	<name>metainstaller</name>
 	<comment></comment>
 	<projects>
+		<project>apt</project>
+		<project>stdlib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

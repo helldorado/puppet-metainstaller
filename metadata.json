@@ -9,7 +9,7 @@
   "version": "1.0",
   "checksums": {
     "Modulefile": "151a8a383bfe37618941022afe60ca11",
-    "README.markdown": "0bf575d03214075519f2c79a100b5edb",
+    "README.markdown": "09f56799424f9c2541bcb6959fa249fb",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "manifests/apache2.pp": "35733bed2b921b74add48432953c0daf",
     "manifests/apache2/config.pp": "319e2f9a5b3a3669c4e884b03c5caad7",

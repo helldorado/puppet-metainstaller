@@ -1,6 +1,8 @@
-# metainstaller # No ready to use in production environnement. Stay tuned
+# metainstaller # 
+# No ready to use in production environnement #
+# Stay tuned #
 
-This is the metainstaller module. It provides the capability to manage the installation, configuration, users, permissions on a wide range of applications, services and platforms.
+It provides the capability to manage the installation, configuration, users, permissions on a wide range of applications, services and platforms.
 
 Several types nix platforms (Debian based, RedHat based, FreeBSD) are supported
 
