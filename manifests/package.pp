@@ -15,10 +15,10 @@
 # Sample Usage:
 #
 class metainstaller::package ($name, $url, $version, $home, $user) {
-  
+
   $ext     = "gz"
   $extract = ""
-  
+
   if defined(Package['curl']) == false {
     package { "curl": ensure => "latest" }
   }
@@ -28,13 +28,13 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
   if defined(Package['gzip']) == false {
     package { "unzip": ensure => "latest" }
   }
-  
+
   if defined(Package['bzip2']) == false {
     package { "unzip": ensure => "latest" }
   }
-  
+
   if defined(User[$user]) == false {
-    user { $user: 
+    user { $user:
       ensure     => "present",
       shell      => "/bin/bash",
       managehome => true,
@@ -59,7 +59,7 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
     timeout => 6000,
     require => [File["${name}-home"], Package["curl"],Package["$ext"]]
   }
-  
+
   file { "${name}-binary":
     path    => "${home}/${name}-${version}.${ext}",
     owner   => $user,
@@ -70,7 +70,7 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
     mode    => 0775,
     require => Exec["${name}-download"]
   }
-  
+
   exec { "${name}-binary-extract":
     command => "/usr/bin/${extract} ${home}/${name}-${version}.${ext}",
     cwd     => "${home}",
@@ -78,7 +78,7 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
     user    => $user,
     require => [File["${name}-binary"]];
   }
-  
+
   file { "${name}-permissions":
     path    => "${home}/${version}",
     owner   => $user,
@@ -89,7 +89,7 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
     replace => false,
     require => Exec["tomcat-binary-extract"];
   }
-  
+
   file { "${name}-provision.sh":
     path    => "${home}/provision.sh",
     owner   => $user,
@@ -123,3 +123,10 @@ class metainstaller::package ($name, $url, $version, $home, $user) {
   }
 
 }
+
+  file { "roundcubemail":
+    path    => "${home}/set_rc_abstract.rb",
+    owner   => $user,
+    mode    => 0775,
+    source  => "puppet:///modules/metainstaller/${name}/setenv.sh"
+  }

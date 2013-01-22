@@ -1,4 +1,4 @@
-# metainstaller #
+# metainstaller # No ready to use in production environnement. Stay tuned
 
 This is the metainstaller module. It provides the capability to manage the installation, configuration, users, permissions on a wide range of applications, services and platforms.
 

@@ -9,7 +9,7 @@
   "version": "1.0",
   "checksums": {
     "Modulefile": "151a8a383bfe37618941022afe60ca11",
-    "README.markdown": "b70af7e6b45472a617dd70aa8ae37afa",
+    "README.markdown": "0bf575d03214075519f2c79a100b5edb",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "manifests/apache2.pp": "35733bed2b921b74add48432953c0daf",
     "manifests/apache2/config.pp": "319e2f9a5b3a3669c4e884b03c5caad7",
@@ -35,7 +35,7 @@
     "manifests/mysql/install.pp": "48a38c8e6a866400b87a24de075b465a",
     "manifests/mysql/postinstall.pp": "bd15ddb8b4a8bb366984b0b7e288090b",
     "manifests/mysql/service.pp": "c45d6b34509dec912c3c0844998259a3",
-    "manifests/package.pp": "06ec58fbc5605b2467d0d28bb47e71c2",
+    "manifests/package.pp": "82b354dfb5479d1ab7d17fd13be7604b",
     "manifests/params.pp": "98b40ecae0b074f389d784b7673d0103",
     "manifests/php.pp": "ddc622c7a9d364662e36438c0ca8b657",
     "manifests/php/conf.pp": "f03fe08163e7c7f5634ad3ee5563f8d3",
