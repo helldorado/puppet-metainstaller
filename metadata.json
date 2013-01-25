@@ -58,7 +58,7 @@
     "manifests/php/extra.pp": "45f7583f78994785ab1d8665b2c244f0",
     "manifests/php/ini.pp": "f4d4f645cbfc964e57b65c86bf898498",
     "manifests/php/ini/config.pp": "a0d20869d1005dbd9a77b9a2c05aae6b",
-    "manifests/php/install.pp": "5439e65684248b0ab4d4743cb373517c",
+    "manifests/php/install.pp": "5205e5978a9573e0d99147ac305b7c30",
     "manifests/php/mcrypt.pp": "a3f5845653a658f59526dee707500465",
     "manifests/php/module.pp": "28f111df11800acade3258874829f28b",
     "manifests/php/mysqli.pp": "6433c97a01622ec9097b33ab874a023e",
