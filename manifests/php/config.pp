@@ -38,7 +38,7 @@ class metainstaller::php::config {
     require => Class['metainstaller::php::install'],
   }
 
-  file { '$metainstaller::php::php_conf_dir_php5':
+  file { '${metainstaller::php::php_cli_dir}conf.d':
     ensure  => link,
     target  => '../conf.d',
     force   => true,

@@ -11,258 +11,204 @@ class metainstaller::params {
   case $::osfamily {
 
     'Debian': {
-      $config_file_source       = downcase($::osfamily)
+      $config_file_source         = downcase($::osfamily)
+      $packager                   = 'apt'
       ## PHP global variables
-      $php_base_dir             = '/etc/php5/'
+      $php_base_dir               = '/etc/php5/'
       ## Apache globales variables
-      $apache_base_dir          = '/etc/apache2/'
-      $apache_confd             = "${base_dir}conf.d/"
-      $apache_conf              = "${base_dir}apache2.conf"
-      $apache_service_name      = 'apache2'
-      $user                     = 'www-data'
-      $group                    = 'www-data'
-      $virtual_available        = "${base_dir}sites-available/"
-      $virtual_active           = "${base_dir}sites-enabled/"
-      $package_prefix           = 'libapache2-mod-'  ### >>> apache.pp
+      $apache_base_dir            = '/etc/apache2/'
+      $apache_confd               = "${apache_base_dir}conf.d/"
+      $apache_conf                = "${apache_base_dir}apache2.conf"
+      $apache_service_name        = 'apache2'
+      $apache_user                = 'www-data'
+      $apache_group               = 'www-data'
+      $virtual_available          = "${apache_base_dir}sites-available/"
+      $virtual_active             = "${apache_base_dir}sites-enabled/"
 
       ## Mysql globales var
-      $basedir              = '/usr'
-      $datadir              = '/var/lib/mysql'
-      $service_name         = 'mysql'
-      $client_package_name  = 'mysql-client'
-      $server_package_name  = 'mysql-server'
-      $socket               = '/var/run/mysqld/mysqld.sock'
-      $pidfile              = '/var/run/mysqld/mysqld.pid'
-      $config_file          = '/etc/mysql/my.cnf'
-      $log_error            = '/var/log/mysql/error.log'
-      $ruby_package_name    = 'libmysql-ruby'
-      $python_package_name  = 'python-mysqldb'
-      $php_package_name     = 'php5-mysql'
-      $java_package_name    = 'libmysql-java'
-      $root_group           = 'root'
-      $ssl_ca               = '/etc/mysql/cacert.pem'
-      $ssl_cert             = '/etc/mysql/server-cert.pem'
-      $ssl_key              = '/etc/mysql/server-key.pem'
+      $mysql_basedir              = '/usr'
+      $mysql_datadir              = '/var/lib/mysql'
+      $mysql_service_name         = 'mysql'
+      $mysql_client_package_name  = 'mysql-client'
+      $mysql_server_package_name  = 'mysql-server'
+      $mysql_socket               = '/var/run/mysqld/mysqld.sock'
+      $mysql_pidfile              = '/var/run/mysqld/mysqld.pid'
+      $mysql_config_file          = '/etc/mysql/my.cnf'
+      $mysql_log_error            = '/var/log/mysql/error.log'
+      $mysql_ruby_package_name    = 'libmysql-ruby'
+      $mysql_python_package_name  = 'python-mysqldb'
+      $mysql_php_package_name     = 'php5-mysql'
+      $mysql_java_package_name    = 'libmysql-java'
+      $mysql_root_group           = 'root'
+      $mysql_ssl_ca               = '/etc/mysql/cacert.pem'
+      $mysql_ssl_cert             = '/etc/mysql/server-cert.pem'
+      $mysql_ssl_key              = '/etc/mysql/server-key.pem'
 
       ## Postfix globales variables
-      $package              = 'postfix'
-      $service              = 'postfix'
-      $service_hasstatus    = true
-      $service_hasrestart   = true
-      $aliases              = '/etc/aliases'
-      $mailname             = '/etc/mailname'
-      $newaliases_cmd       = '/usr/bin/newaliases'
-      $config_dir           = '/etc/postfix/'
-      $master               = "${config_dir}master.cf"
-      $main                 = "${config_dir}main.cf"
-      $package_mailx        = 'bsd-mailx'
+      $postfix_config_dir         = '/etc/postfix/'
+      $postfix_package            = 'postfix'
+      $postfix_service            = 'postfix'
+      $postfix_service_hasstatus  = true
+      $postfix_service_hasrestart = true
+      $postfix_aliases            = '/etc/aliases'
+      $postfix_mailname           = '/etc/mailname'
+      $postfix_newaliases_cmd     = '/usr/bin/newaliases'
+      $postfix_master_cf          = "${postfix_config_dir}master.cf"
+      $postfix_main_cf            = "${postfix_config_dir}main.cf"
+      $package_mailx              = 'bsd-mailx'
 
       # Postfixadmin globales variables
-      $version              = '2.3.6'
-      $url                  = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${version}/postfixadmin_${version}-1_all.deb"
-      $base_dir             = '/usr/share/postfixadmin/'
-      $config_dir           = '/etc/postfixadmin/'
-      $conf_file            = "${config_dir}config.inc.php"
-      $apache_conf          = "${config_dir}apache.conf"
+      $pfa_version                = '2.3.6'
+      $pfa_url                    = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${pfa_version}/postfixadmin_${pfa_version}-1_all.deb"
+      $pfa_base_dir               = '/usr/share/postfixadmin/'
+      $pfa_config_dir             = '/etc/postfixadmin/'
+      $pfa_conf_file              = "${pfa_config_dir}config.inc.php"
+      $pfa_apache_conf            = "${pfa_config_dir}apache.conf"
 
       ## Roundcube
-      $version              = '0.8.4'
-      $url                  = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${version}/roundcubemail-${version}.tar.gz"
-      $base_dir             = '/usr/share/roundcube/'
-      $config_dir           = "${base_dir}config"
-      $db_config            = "${config_dir}db.inc.php"
-      $main_config          = "${config_dir}main.inc.php"
+      $rc_version                 = '0.8.4'
+      $rc_url                     = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${rc_version}/roundcubemail-${rc_version}.tar.gz"
+      $rc_base_dir                = '/usr/share/roundcube/'
+      $rc_config_dir              = "${rc_base_dir}config"
+      $rc_db_config               = "${rc_config_dir}db.inc.php"
+      $rc_main_config             = "${rc_config_dir}main.inc.php"
 
       ## Dovecot globales variables 'dovecot': {
-      $base_dir             = '/etc/dovecot/'
-      $dovecot_conf         = "${base_dir}dovecot.conf"
-      $dovecot_sieve        = "${base_dir}default.sieve"
-      $dovecot_query        = "${base_dir}dovecot-mysql.conf"
-
+      $dovecot_base_dir           = '/etc/dovecot/'
+      $dovecot_conf               = "${dovecot_base_dir}dovecot.conf"
+      $dovecot_sieve              = "${dovecot_base_dir}default.sieve"
+      $dovecot_query              = "${dovecot_base_dir}dovecot-mysql.conf"
     }
 
     'RedHat': {
+      $config_file_source         = downcase($::osfamily)
       ## PHP global variables
-      $config_file_source       = downcase($::osfamily)
-      $base_dir             = '/etc/php5/'
+      $php_base_dir               = '/etc/php5/'
       ## Apache globales variables
-      $base_dir             = '/etc/apache2/'
-      $apache_confd         = "${base_dir}conf.d/"
-      $apache_conf          = "${base_dir}apache2.conf"
-      $apache_service_name  = 'apache2'
-      $user                 = 'www-data'
-      $group                = 'www-data'
-      $virtual_available    = "${base_dir}sites-available/"
-      $virtual_active       = "${base_dir}sites-enabled/"
-      $package_prefix       = 'libapache2-mod-'
+      $apache_base_dir            = '/etc/apache2/'
+      $apache_confd               = "${apache_base_dir}conf.d/"
+      $apache_conf                = "${apache_base_dir}apache2.conf"
+      $apache_service_name        = 'apache2'
+      $apache_user                = 'www-data'
+      $apache_group               = 'www-data'
+      $virtual_available          = "${apache_base_dir}sites-available/"
+      $virtual_active             = "${apache_base_dir}sites-enabled/"
+      $package_prefix             = 'libapache2-mod-'
 
       ## Mysql globales var
-      $basedir              = '/usr'
-      $datadir              = '/var/lib/mysql'
-      $service_name         = 'mysql'
-      $client_package_name  = 'mysql-client'
-      $server_package_name  = 'mysql-server'
-      $socket               = '/var/run/mysqld/mysqld.sock'
-      $pidfile              = '/var/run/mysqld/mysqld.pid'
-      $config_file          = '/etc/mysql/my.cnf'
-      $log_error            = '/var/log/mysql/error.log'
-      $ruby_package_name    = 'libmysql-ruby'
-      $python_package_name  = 'python-mysqldb'
-      $php_package_name     = 'php5-mysql'
-      $java_package_name    = 'libmysql-java'
-      $root_group           = 'root'
-      $ssl_ca               = '/etc/mysql/cacert.pem'
-      $ssl_cert             = '/etc/mysql/server-cert.pem'
-      $ssl_key              = '/etc/mysql/server-key.pem'
+      $mysql_basedir              = '/usr'
+      $mysql_datadir              = '/var/lib/mysql'
+      $mysql_service_name         = 'mysql'
+      $mysql_client_package_name  = 'mysql-client'
+      $mysql_server_package_name  = 'mysql-server'
+      $mysql_socket               = '/var/run/mysqld/mysqld.sock'
+      $mysql_pidfile              = '/var/run/mysqld/mysqld.pid'
+      $mysql_config_file          = '/etc/mysql/my.cnf'
+      $mysql_log_error            = '/var/log/mysql/error.log'
+      $mysql_ruby_package_name    = 'libmysql-ruby'
+      $mysql_python_package_name  = 'python-mysqldb'
+      $mysql_php_package_name     = 'php5-mysql'
+      $mysql_java_package_name    = 'libmysql-java'
+      $mysql_root_group           = 'root'
+      $mysql_ssl_ca               = '/etc/mysql/cacert.pem'
+      $mysql_ssl_cert             = '/etc/mysql/server-cert.pem'
+      $mysql_ssl_key              = '/etc/mysql/server-key.pem'
 
       ## Postfix globales variables
-      $package              = 'postfix'
-      $service              = 'postfix'
-      $service_hasstatus    = true
-      $service_hasrestart   = true
-      $aliases              = '/etc/aliases'
-      $mailname             = '/etc/mailname'
-      $newaliases_cmd       = '/usr/bin/newaliases'
-      $config_dir           = '/etc/postfix/'
-      $master               = "${config_dir}master.cf"
-      $main                 = "${config_dir}main.cf"
-      $package_mailx        = 'bsd-mailx'
+      $postfix_package            = 'postfix'
+      $postfix_service            = 'postfix'
+      $postfix_service_hasstatus  = true
+      $postfix_service_hasrestart = true
+      $postfix_aliases            = '/etc/aliases'
+      $postfix_mailname           = '/etc/mailname'
+      $postfix_newaliases_cmd     = '/usr/bin/newaliases'
+      $postfix_config_dir         = '/etc/postfix/'
+      $postfix_master             = "${postfix_config_dir}master.cf"
+      $postfix_main               = "${postfix_config_dir}main.cf"
+      $postfix_package_mailx      = 'bsd-mailx'
 
       # Postfixadmin globales variables
-      $version              = '2.3.6'
-      $url                  = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${version}/postfixadmin_${version}-1_all.deb"
-      $base_dir             = '/usr/share/postfixadmin/'
-      $config_dir           = '/etc/postfixadmin/'
-      $conf_file            = "${config_dir}config.inc.php"
-      $apache_conf          = "${config_dir}apache.conf"
+      $pfa_version                = '2.3.6'
+      $pfa_url                    = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${pfa_version}/postfixadmin_${pfa_version}-1_all.rpm"
+      $pfa_base_dir               = '/usr/share/postfixadmin/'
+      $pfa_config_dir             = '/etc/postfixadmin/'
+      $pfa_conf_file              = "${pfa_config_dir}config.inc.php"
+      $pfa_apache_conf            = "${pfa_config_dir}apache.conf"
 
       ## Roundcube
-      $version              = '0.8.4'
-      $url                  = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${version}/roundcubemail-${version}.tar.gz"
-      $base_dir             = '/usr/share/roundcube/'
-      $config_dir           = "${base_dir}config"
-      $db_config            = "${config_dir}db.inc.php"
-      $main_config          = "${config_dir}main.inc.php"
+      $rc_version                 = '0.8.4'
+      $rc_url                     = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${rc_version}/roundcubemail-${rc_version}.tar.gz"
+      $rc_base_dir                = '/usr/share/roundcube/'
+      $rc_config_dir              = "${rc_base_dir}config"
+      $rc_db_config               = "${rc_config_dir}db.inc.php"
+      $rc_main_config             = "${rc_config_dir}main.inc.php"
 
       ## Dovecot globales variables 'dovecot': {
-      $base_dir             = '/etc/dovecot/'
-      $dovecot_conf         = "${base_dir}dovecot.conf"
-      $dovecot_sieve        = "${base_dir}default.sieve"
-      $dovecot_query        = "${base_dir}dovecot-mysql.conf"
-
-    }
-
-    'Suse': {
-      $basedir               = '/usr'
-      $datadir               = '/var/lib/mysql'
-      $service_name          = 'mysql'
-      $client_package_name   = $::operatingsystem ? {
-        /OpenSuSE/           => 'mysql-community-server-client',
-        /(SLES|SLED)/        => 'mysql-client',
-        }
-      $server_package_name   = $::operatingsystem ? {
-        /OpenSuSE/           => 'mysql-community-server',
-        /(SLES|SLED)/        => 'mysql',
-        }
-      $socket                = $::operatingsystem ? {
-        /OpenSuSE/           => '/var/run/mysql/mysql.sock',
-        /(SLES|SLED)/        => '/var/lib/mysql/mysql.sock',
-
-        }
-      $pidfile               = '/var/run/mysql/mysqld.pid'
-      $config_file           = '/etc/my.cnf'
-      $log_error             = $::operatingsystem ? {
-        /OpenSuSE/           => '/var/log/mysql/mysqld.log',
-        /(SLES|SLED)/        => '/var/log/mysqld.log',
-        }
-      $ruby_package_name     = $::operatingsystem ? {
-        /OpenSuSE/           => 'rubygem-mysql',
-        /(SLES|SLED)/        => 'ruby-mysql',
-        }
-
-      $python_package_name   = 'python-mysql'
-      $java_package_name     = 'mysql-connector-java'
-      $root_group            = 'root'
-      $ssl_ca                = '/etc/mysql/cacert.pem'
-      $ssl_cert              = '/etc/mysql/server-cert.pem'
-      $ssl_key               = '/etc/mysql/server-key.pem'
+      $dovecot_base_dir           = '/etc/dovecot/'
+      $dovecot_conf               = "${rc_base_dir}dovecot.conf"
+      $dovecot_sieve              = "${rc_base_dir}default.sieve"
+      $dovecot_query              = "${rc_base_dir}dovecot-mysql.conf"
 
     }
 
     'FreeBSD': {
-      case $application {
-        'php': {
-          $base_dir             = '/etc/php5/'
-          $base_dir             = '/etc/apache2/'
-          $apache_confd         = "${base_dir}conf.d/"
-          $apache_conf          = "${base_dir}apache2.conf"
-          $apache_service_name  = 'apache2'
-          $user                 = 'www-data'
-          $group                = 'www-data'
-          $virtual_available    = "${base_dir}sites-available/"
-          $virtual_active       = "${base_dir}sites-enabled/"
-          $package_prefix       = 'libapache2-mod-'
-        }
-        'mysql': {
-          $basedir               = '/usr/local'
-          $datadir               = '/var/db/mysql'
-          $service_name          = 'mysql-server'
-          $client_package_name   = 'databases/mysql55-client'
-          $server_package_name   = 'databases/mysql55-server'
-          $socket                = '/tmp/mysql.sock'
-          $pidfile               = '/var/db/mysql/mysql.pid'
-          $config_file           = '/var/db/mysql/my.cnf'
-          $log_error             = "/var/db/mysql/${::hostname}.err"
-          $ruby_package_name     = 'ruby-mysql'
-          $ruby_package_provider = 'gem'
-          $python_package_name   = 'databases/py-MySQLdb'
-          $php_package_name      = 'php5-mysql'
-          $java_package_name     = 'databases/mysql-connector-java'
-          $root_group            = 'wheel'
-          $ssl_ca                = undef
-          $ssl_cert              = undef
-          $ssl_key               = undef
-        }
-        'postfix': {
-          $package              = 'postfix'
-          $service              = 'postfix'
-          $service_hasstatus    = true
-          $service_hasrestart   = true
-          $aliases              = '/etc/aliases'
-          $mailname             = '/etc/mailname'
-          $newaliases_cmd       = '/usr/bin/newaliases'
-          $config_dir           = '/etc/postfix/'
-          $master               = "${config_dir}master.cf"
-          $main                 = "${config_dir}main.cf"
-          $package_mailx        = 'bsd-mailx'
-        }
-        'postfixadmin': {
-          $version              = '2.3.6'
-          $url                  = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${version}/postfixadmin_${version}-1_all.deb"
-          $base_dir             = '/usr/share/postfixadmin/'
-          $config_dir           = '/etc/postfixadmin/'
-          $conf_file            = "${config_dir}config.inc.php"
-          $apache_conf          = "${config_dir}apache.conf"
-        }
-        'roundcube': {
-          $version              = '0.8.4'
-          $url                  = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${version}/roundcubemail-${version}.tar.gz"
-          $base_dir             = '/usr/share/roundcube/'
-          $config_dir           = "${base_dir}config"
-          $db_config            = "${config_dir}db.inc.php"
-          $main_config          = "${config_dir}main.inc.php"
-        }
-        'dovecot': {
-          $base_dir             = '/etc/dovecot/'
-          $dovecot_conf         = "${base_dir}dovecot.conf"
-          $dovecot_sieve        = "${base_dir}default.sieve"
-          $dovecot_query        = "${base_dir}dovecot-mysql.conf"
-        }
-      }
+      $config_file_source         = downcase($::osfamily)
+      ## Php globales variables
+      $php_base_dir               = '/usr/lcoal/etc/php5/'
+      ### Mysql
+      $mysql_basedir              = '/usr/local'
+      $mysql_datadir              = '/var/db/mysql'
+      $mysql_service_name         = 'mysql-server'
+      $mysql_client_package_name  = 'databases/mysql55-client'
+      $mysql_server_package_name  = 'databases/mysql55-server'
+      $mysql_socket               = '/tmp/mysql.sock'
+      $mysql_pidfile              = '/var/db/mysql/mysql.pid'
+      $mysql_config_file          = '/var/db/mysql/my.cnf'
+      $mysql_log_error            = "/var/db/mysql/${::hostname}.err"
+      $mysql_ruby_package_name    = 'ruby-mysql'
+      $mysql_ruby_package_provider= 'gem'
+      $mysql_python_package_name  = 'databases/py-MySQLdb'
+      $mysql_php_package_name     = 'php5-mysql'
+      $mysql_java_package_name    = 'databases/mysql-connector-java'
+      $mysql_root_group           = 'wheel'
+      $mysql_ssl_ca               = undef
+      $mysql_ssl_cert             = undef
+      $mysql_ssl_key              = undef
+      ##postfix
+      $postfix_package            = 'postfix'
+      $postfix_service            = 'postfix'
+      $postfix_service_hasstatus  = true
+      $postfix_service_hasrestart = true
+      $postfix_aliases            = '/etc/aliases'
+      $postfix_mailname           = '/etc/mailname'
+      $postfix_newaliases_cmd     = '/usr/bin/newaliases'
+      $postfix_config_dir         = '/etc/postfix/'
+      $postfix_master             = "${postfix_config_dir}master.cf"
+      $postfix_main               = "${postfix_config_dir}main.cf"
+      $package_mailx              = 'bsd-mailx'
+      ## Postfixadmin
+      $pfa_version                = '2.3.6'
+      $pfa_url                    = "http://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-${pfa_version}/postfixadmin_${pfa_version}.tar.gz"
+      $pfa_base_dir               = '/usr/share/postfixadmin/'
+      $pfa_config_dir             = '/etc/postfixadmin/'
+      $pfa_conf_file              = "${pfa_config_dir}config.inc.php"
+      $pfa_apache_conf            = "${pfa_config_dir}apache.conf"
+      ## Roundcube
+      $rc_version                 = '0.8.4'
+      $rc_url                     = "http://garr.dl.sourceforge.net/project/roundcubemail/roundcubemail/${rc_version}/roundcubemail-${rc_version}.tar.gz"
+      $rc_base_dir                = '/usr/share/roundcube/'
+      $rc_config_dir              = "${rc_base_dir}config"
+      $rc_db_config               = "${rc_config_dir}db.inc.php"
+      $rc_main_config             = "${rc_config_dir}main.inc.php"
+      # Dovecot
+      $dovecot_base_dir           = '/etc/dovecot/'
+      $dovecot_conf               = "${dovecot_base_dir}dovecot.conf"
+      $dovecot_sieve              = "${dovecot_base_dir}default.sieve"
+      $dovecot_query              = "${dovecot_base_dir}dovecot-mysql.conf"
     }
 
    default: {
           fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily RedHat, Debian, and FreeBSD")
         }
-      }
+    }
 }
