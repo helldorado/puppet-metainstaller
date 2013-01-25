@@ -13,5 +13,5 @@
 class metainstaller::packagers (
   ) inherits metainstaller::params {
 
-    include metainstaller::packagers::${packager}
+    include metainstaller::packagers::$packager
 }

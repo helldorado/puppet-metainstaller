@@ -8,7 +8,7 @@
   "summary": "Meta Installer module for Puppet",
   "version": "1.0",
   "checksums": {
-    "Modulefile": "151a8a383bfe37618941022afe60ca11",
+    "Modulefile": "5257f8d57ef9adff9d904bf32226a9b3",
     "README.markdown": "09f56799424f9c2541bcb6959fa249fb",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "manifests/apache2.pp": "35733bed2b921b74add48432953c0daf",
@@ -36,10 +36,25 @@
     "manifests/mysql/postinstall.pp": "bd15ddb8b4a8bb366984b0b7e288090b",
     "manifests/mysql/service.pp": "c45d6b34509dec912c3c0844998259a3",
     "manifests/package.pp": "82b354dfb5479d1ab7d17fd13be7604b",
-    "manifests/params.pp": "e393c633c96b4dfc5cd2ffaff8438f1b",
-    "manifests/php.pp": "addeb54656f0157985a446cdd042aaa4",
+    "manifests/packagers/apt.pp": "5236d1a3944fabcd5f1b1435ec810c11",
+    "manifests/packagers/apt/backports.pp": "abb95dea927b6382619ec2e6ff006ae6",
+    "manifests/packagers/apt/builddep.pp": "571711d43bd4f1539f5784d3457372d5",
+    "manifests/packagers/apt/conf.pp": "f96a4ba13b36118fe2e5fe9ba76adb3f",
+    "manifests/packagers/apt/debian/testing.pp": "2c94feec7d64ad8f8c9f84ad1c9afce3",
+    "manifests/packagers/apt/debian/unstable.pp": "76d6cf1706083ff0d5d92f241b9f46e0",
+    "manifests/packagers/apt/force.pp": "926ae1d5ab33e46bd84b8938e159424f",
+    "manifests/packagers/apt/key.pp": "e73b5d7e22499eb8741576b4f328ff88",
+    "manifests/packagers/apt/params.pp": "90434139c161b3093685bbd711a14050",
+    "manifests/packagers/apt/pin.pp": "48c194e2fec5848678a343bccc146477",
+    "manifests/packagers/apt/ppa.pp": "309d0fe31e26685cd45ac6240e9af1fb",
+    "manifests/packagers/apt/release.pp": "8ba5bb6db078a091f459087d79fd3c12",
+    "manifests/packagers/apt/source.pp": "4b213a77e2a3c4b4281b9d8364a069dc",
+    "manifests/packagers/apt/update.pp": "035361292b64012a575a2dd886668895",
+    "manifests/pakagers.pp": "1aff29b71a203c8554eead8f8a1d81cf",
+    "manifests/params.pp": "b5069048516b449693e41ec394fc802b",
+    "manifests/php.pp": "df08e34b56855d40525ff4661cef247a",
     "manifests/php/conf.pp": "ae7e9972d3d42377bfd9e4cf2132c196",
-    "manifests/php/config.pp": "1498e8c4e79657a32a52c75b2c6594f9",
+    "manifests/php/config.pp": "1ada08f0cab1148c29bf6b3e39fd5ed7",
     "manifests/php/extra.pp": "45f7583f78994785ab1d8665b2c244f0",
     "manifests/php/ini.pp": "f4d4f645cbfc964e57b65c86bf898498",
     "manifests/php/ini/config.pp": "a0d20869d1005dbd9a77b9a2c05aae6b",
@@ -47,8 +62,10 @@
     "manifests/php/mcrypt.pp": "a3f5845653a658f59526dee707500465",
     "manifests/php/module.pp": "28f111df11800acade3258874829f28b",
     "manifests/php/mysqli.pp": "6433c97a01622ec9097b33ab874a023e",
-    "manifests/repository/dotdeb.pp": "b0fff6e94f78b88e6edfa1c5541c1dab",
+    "manifests/repository/dotdeb.pp": "17559fd587d093e342e4dd110f2f99fa",
     "manifests/repository/percona.pp": "584b076b8501437792cc5f3e748cc3d0",
+    "pin.pref.erb": "cc6dcd4fbc24ebd9393122983ee0fae3",
+    "source.list.erb": "7cfd5f0839f487c02653c749bc73f7f5",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
     "tests/init.pp": "54daf816ea258a4e83a53f78bc06b642"
@@ -57,10 +74,6 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": "\u003d\u003d3.2.0"
-    },
-    {
-      "name": "puppetlabs/apt",
-      "version_requirement": "\u003d\u003d1.1.0"
     }
   ]
 }

@@ -15,4 +15,3 @@ The following services and applications are supported
 WEB => Apache2, Nginx, PHP5, PHP5-FPM, MySQL
 Mail => Postfix, Dovecot, SpamAssassin, opendkim, postfixadmin, Roundcube'
 dependency 'puppetlabs/stdlib', '==3.2.0'
-dependency 'puppetlabs/apt', '==1.1.0'
