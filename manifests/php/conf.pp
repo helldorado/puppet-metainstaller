@@ -40,7 +40,7 @@ define metainstaller::php::conf(
   # hence we don't have to deal with it.
   file { $file_name:
     ensure  => $ensure,
-    path    => "${metainstaller::params::conf_dir_php5}${file_name}",
+    path    => "${::conf_dir}${file_name}",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
@@ -50,3 +50,5 @@ define metainstaller::php::conf(
     content => $content_real,
   }
 }
+
+

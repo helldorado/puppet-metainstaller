@@ -1,3 +1,24 @@
+metainstaller::php::module { [
+    'gd', 'curl', 'snmp',
+    'mcrypt', 'memcached', 'mysql',
+    'intl', 'imap',
+    ]:
+    require => Apt::Source['dotdeb'],
+    notify  => Service[$metainstaller::params::apache_service_name],
+}
+
+define metainstaller::php::configure($key, $value, $sapi) {
+
+  augeas { "php/${sapi}/${key}":
+    lens  => 'php.lns',
+    incl  => "/etc/php5/${sapi}/php.ini",
+    changes => [
+      "set '${key}' '${value}'"
+    ];
+  }
+
+}
+
 define metainstaller::php::module(
   $ensure = present,
   $package_prefix = 'php5-',
@@ -51,9 +72,9 @@ define metainstaller::php::module(
     default => template("${content}${file_name}.erb"),
   }
 
-  file { $file_name:
+  file { '$file_name':
     ensure  => $ensure,
-    path    => "${metainstaller::params::conf_dir_php5}${file_name}",
+    path    => "${::php_conf_dir}${file_name}",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
@@ -66,3 +87,5 @@ define metainstaller::php::module(
     ],
   }
 }
+
+

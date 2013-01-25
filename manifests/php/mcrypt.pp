@@ -6,7 +6,7 @@ class metainstaller::php::mcrypt {
 
     file { '/etc/php5/conf.d/mcrypt.ini':
          ensure  => present,
-         source  => "puppet:///metainstaller/mcrypt.ini",
+         source  => 'puppet:///metainstaller/mcrypt.ini',
     }
 
 }

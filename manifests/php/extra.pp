@@ -26,9 +26,9 @@ define metainstaller::php::extra (
     default => template("${content}${file_name}.erb"),
   }
 
-  file { $file_name:
+  file { '$file_name':
     ensure  => $ensure,
-    path    => "${metainstaller::params::extra_dir}${file_name}",
+    path    => "${::extra_dir}${file_name}",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',

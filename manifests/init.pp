@@ -11,8 +11,7 @@
 # Sample Usage:
 #
 class metainstaller (
-  $cli_ini_content = undef,
-  $cli_ini_source = undef
+  $ensure = 'present',
 ) inherits metainstaller::params {
- include apt
+
 }

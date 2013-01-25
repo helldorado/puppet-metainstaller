@@ -1,5 +1,5 @@
 class metainstaller::php::config {
-  file { $metainstaller::params::extra_dir:
+  file { '$metainstaller::php::php_extra_dir':
     ensure  => directory,
     owner   => 'root',
     group   => 'root',
@@ -9,7 +9,7 @@ class metainstaller::php::config {
     require => Class['metainstaller::php::install'],
   }
 
-  file { $metainstaller::params::conf_dir_php5:
+  file { '$metainstaller::php::php_conf_dir_php5':
     ensure  => directory,
     owner   => 'root',
     group   => 'root',
@@ -19,16 +19,16 @@ class metainstaller::php::config {
     require => Class['metainstaller::php::install'],
   }
 
-  file { $metainstaller::params::cli_ini:
+  file { '$metainstaller::php::php_cli_ini':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    content => $metainstaller::cli_ini_content,
-    source  => $metainstaller::cli_ini_source,
+    content => '$metainstaller::php::cli_ini_content',
+    source  => '$metainstaller::php::cli_ini_source',
     require => Class['metainstaller::php::install'],
   }
 
-  file { $metainstaller::params::cli_dir:
+  file { '$metainstaller::php::php_cli_dir':
     ensure  => directory,
     owner   => 'root',
     group   => 'root',
@@ -38,10 +38,12 @@ class metainstaller::php::config {
     require => Class['metainstaller::php::install'],
   }
 
-  file { "${metainstaller::params::cli_dir}conf.d":
+  file { '$metainstaller::php::php_conf_dir_php5':
     ensure  => link,
     target  => '../conf.d',
     force   => true,
-    require => File[$metainstaller::params::cli_dir],
+    require => File['$::php_cli_dir'],
   }
 }
+
+
