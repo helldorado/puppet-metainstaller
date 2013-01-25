@@ -64,10 +64,10 @@
     "manifests/php/mysqli.pp": "6433c97a01622ec9097b33ab874a023e",
     "manifests/repository/dotdeb.pp": "17559fd587d093e342e4dd110f2f99fa",
     "manifests/repository/percona.pp": "584b076b8501437792cc5f3e748cc3d0",
-    "pin.pref.erb": "cc6dcd4fbc24ebd9393122983ee0fae3",
-    "source.list.erb": "7cfd5f0839f487c02653c749bc73f7f5",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "templates/apt/pin.pref.erb": "cc6dcd4fbc24ebd9393122983ee0fae3",
+    "templates/apt/source.list.erb": "7cfd5f0839f487c02653c749bc73f7f5",
     "tests/init.pp": "54daf816ea258a4e83a53f78bc06b642"
   },
   "dependencies": [
