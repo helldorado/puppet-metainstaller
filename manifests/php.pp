@@ -5,7 +5,7 @@ class metainstaller::php (
   $php_fpm_package_name     = 'php5-fpm',
   $php_fpm_service_name     = 'php5-fpm',
   $php_cli_dir              = "${metainstaller::params::php_dir}cli/",
-  $php_cli_ini              = "${metainstaller::params::php_dir}php.ini",
+  $php_cli_ini              = "${php_cli_dir}php.ini",
   $php_mod_ini              = "${metainstaller::params::php_mod_dir}php.ini",
   $php_extra_dir            = "${metainstaller::params::php_dir}extra/",
   $php_conf_dir             = "${metainstaller::params::php_dir}conf.d/",

@@ -17,6 +17,7 @@ class metainstaller::params {
       $php_dir                    = '/etc/php5/'
       $php_mod_dir                = '${php_base_dir}apache2'
       $php_fpm_dir                = '${php_base_dir}'
+      $php_mod_package            = 'libapache2-mod-php5'
       ## Apache globales variables
       $apache_base_dir            = '/etc/apache2/'
       $apache_confd               = "${apache_base_dir}conf.d/"
