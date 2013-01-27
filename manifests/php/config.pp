@@ -23,8 +23,8 @@ class metainstaller::php::config {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    content => '$metainstaller::php::cli_ini_content',
-    source  => '$metainstaller::php::cli_ini_source',
+    #content => '$metainstaller::php::cli_ini_content',
+    #source  => '$metainstaller::php::cli_ini_source',  Via augeas
     require => Class['metainstaller::php::install'],
   }
 
@@ -42,7 +42,7 @@ class metainstaller::php::config {
     ensure  => link,
     target  => '../conf.d',
     force   => true,
-    require => File['$::php_cli_dir'],
+    require => File[$metainstaller::php::php_cli_dir],
   }
 }
 

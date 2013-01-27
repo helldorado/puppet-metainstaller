@@ -1,9 +1,9 @@
 class metainstaller::php (
   $cli_ini_content          = undef,
   $cli_ini_source           = undef,
-  $php_cli_package_name     = 'php5-cli',
-  $php_fpm_package_name     = 'php5-fpm',
-  $php_fpm_service_name     = 'php5-fpm',
+  $php_cli_package          = 'php5-cli',
+  $php_fpm_package          = 'php5-fpm',
+  $php_fpm_service          = 'php5-fpm',
   $php_cli_dir              = "${metainstaller::params::php_dir}cli/",
   $php_cli_ini              = "${metainstaller::params::php_dir}cli/php.ini",
   $php_mod_ini              = "${metainstaller::params::php_mod_dir}php.ini",
@@ -16,4 +16,5 @@ class metainstaller::php (
 ) inherits metainstaller::params {
   include metainstaller::php::install
   include metainstaller::php::config
+
 }
