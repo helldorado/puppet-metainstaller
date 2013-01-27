@@ -14,7 +14,9 @@ class metainstaller::params {
       $config_file_source         = downcase($::osfamily)
       $packager                   = 'apt'
       ## PHP global variables
-      $php_base_dir               = '/etc/php5/'
+      $php_dir                    = '/etc/php5/'
+      $php_mod_dir                = '${php_base_dir}apache2'
+      $php_fpm_dir                = '${php_base_dir}'
       ## Apache globales variables
       $apache_base_dir            = '/etc/apache2/'
       $apache_confd               = "${apache_base_dir}conf.d/"

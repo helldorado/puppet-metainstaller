@@ -54,7 +54,7 @@
     "manifests/params.pp": "b5069048516b449693e41ec394fc802b",
     "manifests/php.pp": "df08e34b56855d40525ff4661cef247a",
     "manifests/php/conf.pp": "ae7e9972d3d42377bfd9e4cf2132c196",
-    "manifests/php/config.pp": "1ada08f0cab1148c29bf6b3e39fd5ed7",
+    "manifests/php/config.pp": "a8b01ec69a5d932c97bf7ac2ab5ad159",
     "manifests/php/extra.pp": "45f7583f78994785ab1d8665b2c244f0",
     "manifests/php/ini.pp": "f4d4f645cbfc964e57b65c86bf898498",
     "manifests/php/ini/config.pp": "a0d20869d1005dbd9a77b9a2c05aae6b",
