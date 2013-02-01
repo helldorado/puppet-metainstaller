@@ -37,7 +37,7 @@ define metainstaller::packagers::apt::source(
     owner   => root,
     group   => root,
     mode    => '0644',
-    content => template("${module_name}/source.list.erb"),
+    content => template("${module_name}/apt/source.list.erb"),
     notify  => Exec['apt_update'],
   }
 

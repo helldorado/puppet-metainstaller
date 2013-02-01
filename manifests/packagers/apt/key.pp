@@ -32,7 +32,7 @@ define metainstaller::packagers::apt::key (
       anchor { "metainstaller::packagers::apt::key/${title}": }
 
       if defined(Exec["metainstaller::packagers::apt::key ${upkey} absent"]) {
-        fail("Cannot ensure Apt::Key[${upkey}] present; ${upkey} already ensured absent")
+        fail("Cannot ensure Metainstaller::Packagers::Apt::Key[${upkey}] present; ${upkey} already ensured absent")
       }
 
       if !defined(Anchor["metainstaller::packagers::apt::key ${upkey} present"]) {
@@ -50,17 +50,17 @@ define metainstaller::packagers::apt::key (
           path      => '/bin:/usr/bin',
           unless    => "/usr/bin/apt-key list | /bin/grep '${upkey}'",
           logoutput => 'on_failure',
-          before    => Anchor["apt::key ${upkey} present"],
+          before    => Anchor["metainstaller::packagers::apt::key ${upkey} present"],
         }
       }
 
-      Anchor["metainstaller::packagers::apt::key ${upkey} present"] -> Anchor["apt::key/${title}"]
+      Anchor["metainstaller::packagers::apt::key ${upkey} present"] -> Anchor["metainstaller::packagers::apt::key/${title}"]
 
     }
     absent: {
 
       if defined(Anchor["metainstaller::packagers::apt::key ${upkey} present"]) {
-        fail("Cannot ensure Apt::Key[${upkey}] absent; ${upkey} already ensured present")
+        fail("Cannot ensure Metainstaller::Packagers::Apt::Key[${upkey}] absent; ${upkey} already ensured present")
       }
 
       exec { "metainstaller::packagers::apt::key ${upkey} absent":

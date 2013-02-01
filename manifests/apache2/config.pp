@@ -1,5 +1,5 @@
 class metainstaller::apache2::config {
-  file { $metainstaller::params::apache_dir:
+  file { $metainstaller::params::apache_base_dir:
     ensure  => directory,
     owner   => 'root',
     group   => 'root',
@@ -10,15 +10,15 @@ class metainstaller::apache2::config {
     notify  => Service[$metainstaller::params::apache_service_name],
   }
 
-  file { "${metainstaller::params::apache_dir}conf.d":
+  file { "${metainstaller::params::apache_base_dir}conf.d":
     ensure  => link,
     target  => '../conf.d',
     force   => true,
-    require => File[$metainstaller::params::apache_dir],
+    require => File[$metainstaller::params::apache_base_dir],
     notify  => Service[$metainstaller::params::apache_service_name],
   }
 
-  file { $metainstaller::params::apache_ini:
+  file { $metainstaller::params::php_mod_ini:
     ensure  => file,
     owner   => 'root',
     group   => 'root',

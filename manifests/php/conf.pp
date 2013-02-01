@@ -1,9 +1,10 @@
 define metainstaller::php::conf(
-  $ensure = present,
-  $source = undef,
-  $content = undef,
-  $require = undef,
-  $notify = undef
+  $ensure    = present,
+  $set_param = undef,
+  $source    = undef,
+  $content   = undef,
+  $require   = undef,
+  $notify    = undef
 ) {
   include  metainstaller::php
 
@@ -38,17 +39,16 @@ define metainstaller::php::conf(
 
   # Puppet will bail out if both source and content is set,
   # hence we don't have to deal with it.
-  file { $file_name:
+  file { '$file_name':
     ensure  => $ensure,
-    path    => "${::conf_dir}${file_name}",
+    path    => "${metainstaller::php::php_conf_dir}/${file_name}",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    notify  => $notify,
     require => $require_real,
     source  => $source_real,
     content => $content_real,
+    notify  => Class['metainstaller::php::ini::${name}'],
   }
+
 }
-
-

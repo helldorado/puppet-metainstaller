@@ -1,31 +1,10 @@
-metainstaller::php::module { [
-    'gd', 'curl', 'snmp',
-    'mcrypt', 'memcached', 'mysql',
-    'intl', 'imap',
-    ]:
-    require => Apt::Source['dotdeb'],
-    notify  => Service[$metainstaller::params::apache_service_name],
-}
-
-define metainstaller::php::configure($key, $value, $sapi) {
-
-  augeas { "php/${sapi}/${key}":
-    lens  => 'php.lns',
-    incl  => "/etc/php5/${sapi}/php.ini",
-    changes => [
-      "set '${key}' '${value}'"
-    ];
-  }
-
-}
-
 define metainstaller::php::module(
-  $ensure = present,
+  $ensure         = present,
   $package_prefix = 'php5-',
-  $source = undef,
-  $content = undef,
-  $require = undef,
-  $notify = undef
+  $source         = undef,
+  $content        = undef,
+  $require        = undef,
+  $notify         = undef
 ) {
   include metainstaller::php
   include metainstaller::repository::dotdeb
@@ -41,6 +20,12 @@ define metainstaller::php::module(
     $real_require = Class['metainstaller::php::install']
   }
 
+  if $real_notify {
+    $real_notify = [
+      Class['metainstaller::pĥp:ini::${name}']
+
+    ]
+  }
   package { "php-${name}":
     ensure  => $ensure,
     name    => "${package_prefix}${name}",
@@ -72,7 +57,7 @@ define metainstaller::php::module(
     default => template("${content}${file_name}.erb"),
   }
 
-  file { '$file_name':
+  file { $file_name:
     ensure  => $ensure,
     path    => "${::php_conf_dir}${file_name}",
     mode    => '0644',
@@ -86,6 +71,5 @@ define metainstaller::php::module(
       Package["php5-${name}"],
     ],
   }
+
 }
-
-

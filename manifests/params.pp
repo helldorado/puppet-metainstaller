@@ -14,15 +14,17 @@ class metainstaller::params {
       $config_file_source         = downcase($::osfamily)
       $packager                   = 'apt'
       ## PHP global variables
-      $php_dir                    = '/etc/php5/'
-      $php_mod_dir                = '${php_base_dir}apache2'
+      $php_base_dir               = '/etc/php5/'
+      $php_mod_dir                = '${php_base_dir}apache2/'
+      $php_mod_ini                = '${php_mod_dir}php.ini'
       $php_fpm_dir                = '${php_base_dir}'
       $php_mod_package            = 'libapache2-mod-php5'
       ## Apache globales variables
       $apache_base_dir            = '/etc/apache2/'
       $apache_confd               = "${apache_base_dir}conf.d/"
       $apache_conf                = "${apache_base_dir}apache2.conf"
-      $apache_service_name        = 'apache2'
+      $apache_package_name        = 'apache2'
+      $apache_service             = 'apache2'
       $apache_user                = 'www-data'
       $apache_group               = 'www-data'
       $virtual_available          = "${apache_base_dir}sites-available/"

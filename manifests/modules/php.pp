@@ -1,11 +1,11 @@
 class metainstaller::modules::php {
     metainstaller::php::module { [
-        'gd', 'curl', 'snmp',
+        'apc','gd', 'curl', 'snmp',
         'mcrypt', 'memcached', 'mysql',
         'intl', 'imap',
         ]:
         #require => metainstaller::Sources_list['dotdeb-php53'],
-        require => Apt::Source['dotdeb'],
+        require => Metainstaller::Packagers::Apt::Source['dotdeb'],
         #notify  => Service['apache'],
         notify  => Service[$metainstaller::params::apache_service_name],
         #source => true
